@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETFLIX-CLOWN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: linear-gradient(to right, black, rgb(4, 4, 56));
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+             box-sizing: border-box;
+             max-width:100%;
+        }
+
+        header {
+            position: relative;
+            height: 100vh;
+            background: url('netflix-background.jpg') no-repeat center/cover;
+            background-size: max(1000px, 100vw);
+            background-position: center center;
+        }
+
+        /* for black effect-----( here inset is used because it is a shorthand property for top:0,bottom:0;left:0;right:0;) */
+        header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+        }
+
+        /* --------nav bar ------ */
+        .bar {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.459);
+
+        }
+
+        /* ----------------logo --------------- */
+        .logo {
+            height: 80px;
+            width: 200px;
+        }
+
+        .logo img {
+            object-position: center center;
+            object-fit: cover;
+        }
+
+        /* -------logo ends ----------- */
+
+        /*---------- select and sign in--------- */
+        .select {
+            display: flex;
+            gap: 40px;
+
+        }
+
+        select {
+            color: white;
+            background-color: black;
+            border: 1px solid white;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+
+        #sign-in {
+            display: inline-block;
+            background-color: rgb(226, 29, 29);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+
+        /* content-------------------------------- */
+        .first {
+            position: relative;
+            z-index: 1;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 150px;
+        }
+
+        .first h1 {
+            font-size: 50px;
+        }
+
+        .first p {
+            font-size: 20px;
+        }
+
+        .form {
+            display: flex;
+            gap: 20px;
+
+        }
+
+        .form input {
+            padding: 15px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.493);
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        .form input::placeholder {
+            color: white;
+        }
+
+        .form button {
+            display: inline-block;
+            background-color: rgb(226, 29, 29);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+
+        .curved-line {
+            position: relative;
+            height: 40px;
+
+        }
+
+        .curved-line::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background-color: #e50914;
+            border-top-left-radius: 500%;
+            border-top-right-radius: 500%;
+            z-index: 1;
+            box-shadow: 1px 2px 50px rgb(3, 3, 238);
+        }
+
+        .Trending-movies {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .series {
+            display: flex;
+            width: 80%;
+            height: 400px;
+            overflow-x: scroll;
+            scrollbar-color: rgb(88, 87, 87) black;
+            box-sizing: border-box;
+            padding: 10px;
+            gap: 30px;
+        }
+
+        .series img {
+            height: 300px;
+            width: 250px;
+            object-fit: cover;
+            object-position: center center;
+            border-radius: 20px;
+
+        }
+
+        .arrow {
+            background-color: black;
+            height: 250px;
+            width: 200px;
+            padding: 30px;
+            padding-top: 100px;
+
+        }
+
+        .series img:hover {
+            transform: scale(1.05);
+            transition: tranform 2s ease-in-out;
+        }
+
+        .Trending h2 {
+            margin: 50px 200px;
+            font-size: 30px;
+        }
+
+        .reasons {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .reasons h2 {
+            margin: 50px 20px;
+        }
+
+        .card-cont {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+          @media screen and (max-width:700px){
+           .card-cont {
+            flex-direction: column;
+        }
+    }
+        .card h3 {
+            margin: 20px 0;
+            font-size: 25px;
+        }
+
+        .card {
+            font-size: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 300px;
+            background-image: linear-gradient(to bottom, rgb(3, 1, 36), rgb(34, 2, 43));
+            height: 350px;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        /* questions  */
+        .container-questions {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .questions {
+            display: flex;
+            flex-direction: column;
+            margin: 100px 0;
+            gap: 10px;
+            font-size: 20px;
+            padding: 30px;
+            width: 700px;
+            line-height: 30px;
+        }
+        @media screen and (max-width:700px){
+            .questions {
+            max-width:100%;
+        }
+    }
+
+        .ques {
+            position: relative;
+            padding: 20px 40px;
+            background: rgb(44, 44, 44);
+            border-radius: 10px;
+        }
+
+        .ques p {
+            position: absolute;
+            z-index: 1;
+            padding: 20px;
+            display: none;
+            background: rgb(59, 58, 58);
+            border-radius: 10px;
+        }
+
+        .ques:hover p {
+            display: block;
+        }
+
+        p.ready-to-watch {
+            font-size: 20px;
+            padding-bottom: 40px;
+        }
+        /* footer -------------------------------------------------------------- */
+        footer{
+            margin-top:100px;
+            padding: 20px;
+            background-color: black;
+        }
+        footer a{
+            color: white;;
+        }
+        /* links ---------- */
+        .links{
+            display: grid;
+            padding:50px;
+            grid-template-columns:1fr 1fr 1fr 1fr;
+            grid-template-rows:50px 50px 50px 50px;
+        }
+        .end{
+            margin-top:30px;
+            display: flex;
+            flex-direction: column;
+            gap:20px
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="bar">
+            <div class="logo">
+                <img src="netflix-logo1.jpg" alt="" height=80px width="200px">
+            </div>
+            <div class="select">
+                <select name="language" id="language">
+                    <option value="" disabled selected>&🅰 Language</option>
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Japanese">Japanese</option>
+                    <option value="korean">korean</option>
+                    <option value="Chinese">Chinese</option>
+                </select>
+
+                <button id="sign-in">sign in </button>
+            </div>
+        </nav>
+
+        <div class="first">
+            <h1>Unlimited movies,TV shows and more</h1>
+            <p>starts at $140 cancel at any time.</p>
+            <p>Ready to watch? Enter your email to create or restart your membership.</p>
+            <form action="" class="form">
+                <input type="email" placeholder="Email address"><button>Get started ></button>
+            </form>
+        </div>
+    </header>
+    <main>
+        <div class="curved-line"></div>
+
+        <div class="Trending">
+            <h2>Trending Now</h2>
+            <div class="Trending-movies">
+                <div class="series">
+                    <div class="arrow">
+                        < </div>
+                            <img src="squid-game.jpeg" alt="">
+                            <img src="raid2.jpeg" alt="">
+                            <img src="kapil-show.jpeg" alt="">
+                            <img src="aap-jaisa-koi-movie.jpg" alt="">
+                            <img src="hit-pic.jpeg" alt="">
+                            <img src="jaat-pic.jpeg" alt="">
+                            <img src="chhaava-pic.jpeg" alt="">
+                            <img src="rana-naidu-pic.jpg" alt="">
+                            <img src="kufu-panda-pic.jpeg" alt="">
+                            <img src="thug-life-pic.jpg" alt="">
+                            <div class="arrow"> > </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="reasons">
+                <h2 style="margin-left:100px;  font-size:30px;">More reasons to join</h2>
+                <div class="card-cont">
+                    <div class="card">
+                        <h3>Enjoy on your TV</h3>
+                        <p>Watch o smart TVs,playstation,Xbox,Apple TV,Blueray players and more.
+                        </p>
+
+                    </div>
+                    <div class="card">
+                        <h3>Download your shows to watch offline</h3>
+                        <p>save your favorites easily and always have something to watch</p>
+                    </div>
+                    <div class="card">
+                        <h3>Watch everything</h3>
+                        <p>Stream unlimited moves and TV shows on your phone ,tablet,laptop and TV.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Create profile for kids</h3>
+                        <p>send kids on adventures with their favourite characters in a space made just for them free
+                            with your membership.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- frequently asked question  -->
+            <div class="container-questions">
+                <div class="questions">
+
+                    <h2>Frequenlty Asked Questions</h2>
+
+                    <div class="ques">What is netflix?
+                        <p>Netflix is a streaming service that offers a wide variety of
+                            awards-wining TV shows,movies,anime,documentaries
+                            and more-on thousands of internet-connects devices.
+                            <br>you can watch as much as you want ,whenever
+                            you want,without a single ad-all for one low
+                            monthly price.There's always something
+                            new to discover,and new TVshows and movies are added every week!
+                        </p>
+                    </div>
+                    <div class="ques">How much does Netflix cost?
+                        <p>Watch Netflix in your smart phone
+                            ,smart TV,laptop or streaming devices all
+                            for one fixed monthly fee,plans rangs from $14
+                            to $84 a month.No extra costs,no contracts.</p>
+                    </div>
+
+                    <div class="ques">
+                        where can I watch?
+                        <p>Watch anywhere ,anytime on your personal device. <br>You can also download your favourite
+                            shows and watch it offline for free.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- enter email id ------ -->
+                <p class="ready-to-watch">Ready to watch? Enter your email to create or restart your membership.</p>
+                <form action="" class="form">
+                    <input type="email" placeholder="Email address"><button>Get started ></button>
+                </form>
+
+            </div>
+            <!-- container-questions ends here     --------------->
+    </main>
+
+    <footer>
+        <p class="number"> Questions?Call <a href="">000-800-919-1743</a></p>
+        <div class="links">
+            <div><a href="">FAQ</a></div>
+            <div><a href="">Help Center</a></div>
+            <div><a href="">Account</a></div>
+            <div><a href="">Media Center</a></div>
+            <div><a href="">Investor relation</a></div>
+            <div><a href="">Jobs</a></div>
+            <div><a href="">Way to Watch</a></div>
+            <div><a href="">Terms of use</a></div>
+            <div><a href="">Privacy</a></div>
+            <div><a href="">Cookies Prefrence </a></div>
+            <div><a href="">Corpration information </a></div>
+            <div><a href="">Contact Us</a></div>
+            <div><a href="">Speed test</a></div>
+            <div><a href="">Legal notice</a></div>
+            <div><a href="">only on netflix</a></div>
+        </div>
+
+     <select name="language" id="language">
+                    <option value="" disabled selected>&🅰 Language</option>
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Japanese">Japanese</option>
+                    <option value="korean">korean</option>
+                    <option value="Chinese">Chinese</option>
+                </select>
+<div class="end">
+   <p>Netflix India</p>
+    <p>This page is protected by Google reCAPTHCHA to ensure you are not a bot. <a href="">learn more</a></p>
+</div>
+    </footer>
+</body>
+
+</html>
